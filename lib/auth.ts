@@ -100,7 +100,7 @@ export function login(username: string, password: string): User | null {
     return null;
 }
 
-export function logout(): void {
+export async function logout(): Promise<void> {
     clearPersistedSession();
     // Notify remote server (best-effort)
     try {
