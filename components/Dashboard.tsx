@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Tribe, GameAction, HexData, User, GamePhase, Garrison, ChiefRequest, AssetRequest, ActionType, Journey, DiplomaticProposal } from '../types';
 import Header from './Header';
 import ResourcePanel from './ResourcePanel';
-import TribeStats from './TribeStats';
+import TribeStatsComponent from './TribeStats';
 import ActionPanel from './ActionPanel';
 import MapView from './MapView';
 import ActionModal from './actions/ActionModal';
@@ -295,7 +295,7 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
         </div>
         <div className="space-y-6">
           <ResourcePanel globalResources={playerTribe.globalResources} garrisons={playerTribe.garrisons || {}} rationLevel={playerTribe.rationLevel} />
-          <TribeStats stats={playerTribe.stats} />
+          <TribeStatsComponent stats={playerTribe.stats} />
           {renderActionArea()}
           <JourneysPanel allJourneys={journeys} playerTribeId={playerTribe.id} turn={turn} />
           <DiplomacyPanel 

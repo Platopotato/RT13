@@ -7,7 +7,7 @@ interface TribeStatsProps {
   stats: TribeStats;
 }
 
-const TribeStats: React.FC<TribeStatsProps> = ({ stats }) => {
+const TribeStatsComponent: React.FC<TribeStatsProps> = ({ stats }) => {
   return (
     <Card title="Tribe Attributes">
       <ul className="space-y-2">
@@ -22,4 +22,4 @@ const TribeStats: React.FC<TribeStatsProps> = ({ stats }) => {
   );
 };
 
-export default TribeStats;
+export default TribeStatsComponent;
