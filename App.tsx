@@ -1,5 +1,22 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Tribe, User, GameState, HexData, GameAction, TribeStats, FullBackupState, ChiefRequest, AssetRequest, ActionType, DiplomaticProposal, DiplomaticStatus, Garrison, DiplomaticRelation } from './types';
+import { 
+  Tribe,
+  User,
+  GameState,
+  HexData,
+  GameAction,
+  TribeStats,
+  FullBackupState,
+  ChiefRequest,
+  AssetRequest,
+  ActionType,
+  DiplomaticProposal,
+  DiplomaticStatus,
+  Garrison,
+  DiplomaticRelation,
+  View,
+  TribeCreationData
+} from './types';
 import TribeCreation from './components/TribeCreation';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
@@ -13,17 +30,6 @@ import * as Auth from './lib/auth';
 import * as server from './lib/server';
 import { INITIAL_GLOBAL_RESOURCES, INITIAL_GARRISON } from './constants';
 import { getHexesInRange, parseHexCoords } from './lib/mapUtils';
-
-// Define view types as a union type
-type View = 'login' | 'register' | 'game' | 'admin' | 'create_tribe' | 'map_editor' | 'forgot_password' | 'leaderboard' | 'transition';
-
-type TribeCreationData = {
-    playerName: string;
-    tribeName: string;
-    icon: string;
-    color: string;
-    stats: TribeStats;
-};
 
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);

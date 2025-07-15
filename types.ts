@@ -1,6 +1,3 @@
-
-
-
 export enum JourneyType {
     Move = 'Move',
     Attack = 'Attack',
@@ -317,3 +314,14 @@ export interface FullBackupState {
     gameState: GameState;
     users: User[];
 }
+
+// App view types
+export type View = 'login' | 'register' | 'game' | 'admin' | 'create_tribe' | 'map_editor' | 'forgot_password' | 'leaderboard' | 'transition';
+
+export type TribeCreationData = {
+    playerName: string;
+    tribeName: string;
+    icon: string;
+    color: string;
+    stats: TribeStats;
+};
