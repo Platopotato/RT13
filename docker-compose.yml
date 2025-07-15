@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  radix-tribes:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: radix-tribes:latest
+    container_name: radix-tribes
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - radix-data:/data
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATA_DIR=/data
+      - DATABASE_FILE=/data/game-data.json
+      - ALLOWED_ORIGINS=http://localhost:3000,https://your-domain.com
+      # Uncomment and set if using AI features
+      # - GEMINI_API_KEY=your_key_here
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    networks:
+      - radix-network
+
+networks:
+  radix-network:
+    driver: bridge
+
+volumes:
+  radix-data:
+    driver: local
