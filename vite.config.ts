@@ -7,7 +7,11 @@ export default defineConfig(({ mode }) => {
     return {
       // React + TypeScript support
       plugins: [
-        react()
+        react({
+          // ensure the new automatic JSX runtime is used for TS/TSX files
+          jsxRuntime: 'automatic',
+          include: ['**/*.tsx', '**/*.jsx']
+        })
       ],
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
@@ -16,12 +20,17 @@ export default defineConfig(({ mode }) => {
       // Vite already discovers `index.html` and `src/main.tsx`.
       // Additional TypeScript/JS target for better DX.
       esbuild: {
-        target: 'es2020'
+        target: 'es2020',
+        jsx: 'automatic'
       },
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      // keep Vite on the expected port during dev so we don’t keep “trying another one…”
+      server: {
+        port: 5182
       },
     };
 });
