@@ -1,6 +1,4 @@
 
-
-
 import React from 'react';
 import { GlobalResources, POIType, POIRarity } from './types';
 

@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { Tribe, User, GameState, HexData, GameAction, TribeStats, FullBackupState, ChiefRequest, AssetRequest, ActionType, DiplomaticProposal, DiplomaticStatus, Garrison, DiplomaticRelation } from './types';
 import TribeCreation from './components/TribeCreation';
@@ -16,6 +14,7 @@ import * as server from './lib/server';
 import { INITIAL_GLOBAL_RESOURCES, INITIAL_GARRISON } from './constants';
 import { getHexesInRange, parseHexCoords } from './lib/mapUtils';
 
+// Define view types as a union type
 type View = 'login' | 'register' | 'game' | 'admin' | 'create_tribe' | 'map_editor' | 'forgot_password' | 'leaderboard' | 'transition';
 
 type TribeCreationData = {
@@ -250,7 +249,7 @@ const App: React.FC = () => {
           initialStartLocations={gameState.startingLocations}
           onSave={handleUpdateMap}
           onCancel={() => setView('admin')}
-        />
+        />;
 
       case 'leaderboard':
         if (!currentUser) { setView('login'); return null; }
