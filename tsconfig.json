@@ -25,6 +25,30 @@
 
     "paths": {
       "@/*" :  ["./*"]
-    }
+    },
+
+    /* React / tooling extras */
+    "types": ["vite/client"],               /* Pick up Vite's env/type helpers            */
+    "esModuleInterop": true,                /* Allow default-import syntax from CJS mods  */
+    "resolveJsonModule": true,              /* Enable `import foo from './foo.json'`      */
+    "baseUrl": ".",                         /* Required for the above `paths` alias       */
+    "forceConsistentCasingInFileNames": true
   }
+,
+  "include": [
+    "src/**/*",
+    "components/**/*",
+    "lib/**/*",
+    "App.tsx",
+    "index.tsx",
+    "types.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "public",
+    "data",
+    "logs",
+    "server.js"
+  ]
 }

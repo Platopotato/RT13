@@ -1,25 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Radix Tribes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/socket.io/socket.io.js"></script>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.1.0",
-    "react-dom/client": "https://esm.sh/react-dom@^19.1.0/client",
-    "react/": "https://esm.sh/react@^19.1.0/",
-    "react-dom/": "https://esm.sh/react-dom@^19.1.0/"
-  }
-}
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radix Tribes - Game Server</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #2d3748;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #4a5568;
+            padding-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ed8936;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #4299e1;
+            margin-top: 2rem;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .status {
+            display: inline-block;
+            background-color: #48bb78;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .api-endpoint {
+            background-color: #2a2e37;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 1rem 0;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #a0aec0;
+        }
+        .hex-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+    </style>
 </head>
-  <body class="bg-neutral-800 text-slate-200 font-sans antialiased">
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="hex-icon">⬡</span>Radix Tribes</h1>
+            <p>Post-Apocalyptic Strategy Game Server</p>
+            <div class="status">Server Online</div>
+        </header>
+        
+        <section>
+            <h2>About Radix Tribes</h2>
+            <p>
+                Radix Tribes is a turn-based, hex-map strategy game where players lead survivor
+                factions in a devastated wasteland. Build garrisons, research forgotten
+                technologies, trade (or wage war) with rival tribes, and survive long enough to
+                dominate the new world.
+            </p>
+            
+            <h2>Server Information</h2>
+            <p>This is the Radix Tribes game server endpoint. The server is currently running and ready to accept connections.</p>
+            
+            <div class="api-endpoint">
+                <strong>Socket.IO Endpoint:</strong> ws://[this-server-address]:3000
+            </div>
+            
+            <h2>How to Connect</h2>
+            <p>
+                To play Radix Tribes, you need to:
+            </p>
+            <ol>
+                <li>Use the Radix Tribes client application</li>
+                <li>Connect to this server address</li>
+                <li>Create an account or log in</li>
+                <li>Form your tribe and start playing!</li>
+            </ol>
+            
+            <h2>Server Status</h2>
+            <p>
+                The server is currently operational. Game data is being stored persistently.
+                Socket.IO is enabled for real-time communication.
+            </p>
+        </section>
+        
+        <footer>
+            <p>Radix Tribes &copy; 2025 | Server Version 1.1.1</p>
+            <p>For support or questions, contact the server administrator.</p>
+        </footer>
+    </div>
+</body>
 </html>
