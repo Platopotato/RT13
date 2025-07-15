@@ -1,0 +1,76 @@
+# Node.js dependencies and build artifacts
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.npm/
+.pnpm-store/
+package-lock.json
+yarn.lock
+.yarn/
+
+# Git and version control
+.git/
+.gitignore
+.gitattributes
+.github/
+
+# Local data and environment
+data/
+# Keep build-time JSON (e.g. config files, mock data) in the context,
+# but still ensure runtime save-files never get copied.
+# Anything inside data/ is already excluded above; the next rule is a
+# belt-and-braces guard for nested JSON in data.
+data/**/*.json
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+test/
+tests/
+__tests__/
+*.test.js
+*.spec.js
+
+# Editor and IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Docker files (to prevent recursive copying)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Temporary files
+tmp/
+temp/
+.cache/

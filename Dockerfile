@@ -8,13 +8,22 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy the rest of the application
+RUN mkdir -p shared
 COPY . .
 
-# Build the application (if needed)
-RUN npm run build
+# ---------- Build the front-end ----------
+# A Vite production build will emit static files into the ./public (or ./dist)
+# directory.  We output straight into /app/public so the Express server can
+# serve those files without any extra configuration.
+#
+# 1. Ensure "public" exists (some scripts expect it)
+# 2. Run the Vite build (uses vite.config.ts at repo root)
+# -------------------------------------------------------
+RUN mkdir -p public \
+    && npx vite build --outDir public
 
 # Create production image
 FROM node:18-alpine
@@ -39,6 +48,8 @@ COPY --from=builder --chown=node:node /app/server.js ./
 COPY --from=builder --chown=node:node /app/public ./public
 COPY --from=builder --chown=node:node /app/lib ./lib
 COPY --from=builder --chown=node:node /app/components ./components
+# Shared code (constants, helpers) used by both server and client
+COPY --from=builder --chown=node:node /app/shared ./shared
 COPY --from=builder --chown=node:node /app/*.ts ./
 COPY --from=builder --chown=node:node /app/*.tsx ./
 

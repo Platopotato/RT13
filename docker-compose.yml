@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   radix-tribes:
     build:
@@ -9,7 +7,7 @@ services:
     container_name: radix-tribes
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3001:3000"
     volumes:
       - radix-data:/data
     environment:
@@ -18,6 +16,11 @@ services:
       - DATA_DIR=/data
       - DATABASE_FILE=/data/game-data.json
       - ALLOWED_ORIGINS=http://localhost:3000,https://your-domain.com
+      # These variables are embedded into the Vite build so the compiled
+      # front-end knows where to reach the API / Socket.IO once served by
+      # the same container.
+      - VITE_API_URL=http://localhost:3001
+      - VITE_SOCKET_URL=http://localhost:3001
       # Uncomment and set if using AI features
       # - GEMINI_API_KEY=your_key_here
     healthcheck:
