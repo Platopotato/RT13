@@ -6,9 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Radix Tribes</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .loading-indicator {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .loading-text {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #f59e0b;
+      }
+    </style>
 </head>
   <body class="bg-neutral-800 text-slate-200 font-sans antialiased">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="root">
+      <!-- Loading state while JavaScript initializes -->
+      <div class="loading-indicator">
+        <div class="loading-text">Loading Radix Tribes...</div>
+      </div>
+    </div>
+
+    <!-- Primary Entry Point -->
+    <script type="module" src="/src/main.js"></script>
+
+    <!-- Error handling and fallback -->
+    <script>
+      // If the main app fails to load after 5 seconds, try the fallback
+      window.addEventListener('load', () => {
+        const loadTimeout = setTimeout(() => {
+          const rootEl = document.getElementById('root');
+          if (rootEl && rootEl.innerHTML.includes('Loading Radix Tribes')) {
+            console.warn('Main app failed to load, redirecting to fallback…');
+            window.location.href = '/fallback.html';
+          }
+        }, 5000);
+
+        // Custom event the app can dispatch once it’s mounted
+        document.addEventListener('app-loaded', () => clearTimeout(loadTimeout));
+      });
+    </script>
   </body>
 </html>
